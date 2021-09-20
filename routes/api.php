@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\ClientTransactionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::post('/account', [AccountController::class, 'create_account']);
+    Route::post('/account', [ClientTransactionController::class, 'process_credit_transaction']);
+    Route::get('/demo', [AccountController::class, 'demo']);
+
+
 });
