@@ -28,8 +28,8 @@ class ClientTransactionController extends Controller
         if(!$account_exist) return response()->json(["message" => "Account Does Not Exists"], 400);
 
          $account = Account::where("account_no", $data["account_no"])->select('account_balance')->first();
-         if($account->balance == null) $data['balance_before'] = "0.00";
-         $data['balance_before'] = $account->balance;
+         //if($account->balance === null) $data['balance_before'] = "0.00";
+         $data['balance_before'] = $account->account_balance;
          $data["meta"] = $data["account_no"];
 
          $credit_account = $this->credit_transaction($data);

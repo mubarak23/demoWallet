@@ -26,7 +26,7 @@ class AccountController extends Controller
          #check if user exist
          $account_exists = Account::where('first_name', $data["first_name"])->where('last_name', $data["last_name"])->exists();
          if($account_exists) return response()->json(["message" => "Account Already exists"], 400);
-         $data["_account_balance"] = "0.00";
+         $data["account_balance"] = "0.00";
          $data["account_no"] = rand(1111111111,9999999999);
          $new_account = $AccountAction->execute($data);
 
