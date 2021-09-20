@@ -24,8 +24,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['prefix' => 'v1'], function () {
     Route::post('/account', [AccountController::class, 'create_account']);
+
     Route::post('/credit_account', [ClientTransactionController::class, 'process_credit_transaction']);
-    Route::get('/demo', [AccountController::class, 'demo']);
+    //process_debit_transaction
+    Route::post('/credit_account', [ClientTransactionController::class, 'process_debit_transaction']);
+
 
 
 });
