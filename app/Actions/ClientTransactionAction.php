@@ -10,8 +10,9 @@ class TransactionAction{
     {
         DB::beginTransaction();
         try {
-            return Transaction::create($data);
+            $create_transaction =  Transaction::create($data);
             DB::commit();
+            return $create_transaction;
         }catch (\Exception $exception) {
              DB::rollback();
             return $exception->getMessage();

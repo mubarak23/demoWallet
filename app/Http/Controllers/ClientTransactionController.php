@@ -12,6 +12,7 @@ class ClientTransactionController extends Controller
 {
     //
      public function process_credit_transaction(Request $request){
+
         $validation = Validator::make($request->all(), [
             'amount' => 'required',
             'account_no' => 'required',
@@ -21,8 +22,8 @@ class ClientTransactionController extends Controller
             return response()->json($validation->errors(), 401);
          }
          $data = $request->all();
+
         $account_exist = Account::where("account_no", $data["account_no"])->exists();
-        return $account_exist;
         if(!$account_exist) return response()->json(["message" => "Account Does Not Exists"], 400);
 
          $account = Account::where("account_no", $data["account_no"])->select('balance')->first();
@@ -138,7 +139,7 @@ class ClientTransactionController extends Controller
     }
 
     public function debit_transaction($data){
-        $credit_data = [
+        $debit_data = [
             'txn_type' => 'Debit',
             'amount'  => $data['amount'],
             'account_no' => $data['account_no'],
@@ -147,10 +148,10 @@ class ClientTransactionController extends Controller
             'balance_after' => $data['balance_before'] - $data['amount'],
             'metadata' => $data['meta']
         ];
-        return $this->add_transaction($credit_data);
+        return $this->add_debit_transaction($debit_data);
     }
 
-    public function add_transaction($data)
+    public function add_debit_transaction($data)
     {
         DB::beginTransaction();
         try {
