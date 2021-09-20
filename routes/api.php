@@ -27,7 +27,7 @@ Route::group(['prefix' => 'v1'], function () {
 
     Route::post('/credit_account', [ClientTransactionController::class, 'process_credit_transaction']);
     //process_debit_transaction
-    Route::post('/credit_account', [ClientTransactionController::class, 'process_debit_transaction']);
+    Route::post('/debit_account', [ClientTransactionController::class, 'process_debit_transaction']);
 
 
 
