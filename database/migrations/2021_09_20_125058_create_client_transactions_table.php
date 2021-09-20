@@ -15,7 +15,7 @@ class CreateClientTransactionsTable extends Migration
     {
         Schema::create('client_transactions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('account_id')->nullable();
+            $table->bigInteger('account_no')->nullable();
             $table->string("txn_type", 255)->nullable();
             $table->decimal("amount", 20, 2)->nullable();
             $table->string("reference")->nullable();

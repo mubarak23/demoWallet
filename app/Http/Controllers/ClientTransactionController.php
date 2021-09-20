@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Str;
 use App\Actions\ClientTransactionAction;
 use App\ClientTransaction;
 use App\Account;
@@ -26,7 +27,7 @@ class ClientTransactionController extends Controller
         $account_exist = Account::where("account_no", $data["account_no"])->exists();
         if(!$account_exist) return response()->json(["message" => "Account Does Not Exists"], 400);
 
-         $account = Account::where("account_no", $data["account_no"])->select('balance')->first();
+         $account = Account::where("account_no", $data["account_no"])->select('account_balance')->first();
 
          $data['balance_before'] = $account->balance;
          $data["meta"] = $data["account_no"];
