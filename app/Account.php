@@ -8,6 +8,6 @@ class Account extends Model
 {
     //
     protected $fillable = [
-        'first_name', 'last_name', 'account_no', 'account_type', '_account_balance'
+        'first_name', 'last_name', 'account_no', 'account_type', '_account_balance', 'branch'
     ];
 }

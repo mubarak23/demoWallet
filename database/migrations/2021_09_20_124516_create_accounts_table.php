@@ -19,6 +19,7 @@ class CreateAccountsTable extends Migration
             $table->string('last_name')->nullable();
             $table->string('account_no')->nullable();
             $table->string('account_type')->nullable();
+            $table->string('branch')->nullable();
             $table->decimal('_account_balance', 20, 2)->nullable();
             $table->timestamps();
         });
