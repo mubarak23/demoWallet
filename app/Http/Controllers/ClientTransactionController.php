@@ -28,7 +28,7 @@ class ClientTransactionController extends Controller
         if(!$account_exist) return response()->json(["message" => "Account Does Not Exists"], 400);
 
          $account = Account::where("account_no", $data["account_no"])->select('account_balance')->first();
-         if($credit_account->balance == null) $data['balance_before'] = "0.00"
+         if($account->balance == null) $data['balance_before'] = "0.00";
          $data['balance_before'] = $account->balance;
          $data["meta"] = $data["account_no"];
 
@@ -77,7 +77,7 @@ class ClientTransactionController extends Controller
         DB::beginTransaction();
        try {
         $account = Account::where("account_no", $data["account_no"])->first();
-        $account->balance = $account->balance + $data['amount'];
+        $account->accout_balance = $account->accout_balance + $data['amount'];
         //return $account->balance;
        $update_account =  $account->save();
        DB::commit();
@@ -127,7 +127,7 @@ class ClientTransactionController extends Controller
         DB::beginTransaction();
        try {
         $account = Account::where("account_no", $data["account_no"])->first();
-        $account->balance = $account->balance - $data['amount'];
+        $account->accout_balance = $account->accout_balance - $data['amount'];
         //return $account->balance;
        $update_account =  $account->save();
        DB::commit();
