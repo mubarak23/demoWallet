@@ -77,7 +77,7 @@ class ClientTransactionController extends Controller
         DB::beginTransaction();
        try {
         $account = Account::where("account_no", $data["account_no"])->first();
-        $account->accout_balance = $account->accout_balance + $data['amount'];
+        $account->accout_balance = $account->account_balance + $data['amount'];
         //return $account->balance;
        $update_account =  $account->save();
        DB::commit();
@@ -127,7 +127,7 @@ class ClientTransactionController extends Controller
         DB::beginTransaction();
        try {
         $account = Account::where("account_no", $data["account_no"])->first();
-        $account->accout_balance = $account->accout_balance - $data['amount'];
+        $account->accout_balance = $account->account_balance - $data['amount'];
         //return $account->balance;
        $update_account =  $account->save();
        DB::commit();
